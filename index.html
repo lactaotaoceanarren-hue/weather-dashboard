@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <div class="search">
+      <input type="text" id="city-input" placeholder="Enter city name..." spellcheck="false" />
+      <button id="search-btn">Search</button>
+    </div>
+
+    <!-- Error message display -->
+    <div class="error" id="error-msg"></div>
+
+    <!-- Weather content container -->
+    <div class="weather" id="weather-box">
+      <img src="" class="weather-icon" id="weather-icon" alt="Weather condition" />
+      <h1 class="temp" id="temp">--°C</h1>
+      <h2 class="city" id="city-name">--</h2>
+      <p class="description" id="description">--</p>
+
+      <div class="details">
+        <div class="col">
+          <div>
+            <p class="humidity" id="humidity">--%</p>
+            <p>Humidity</p>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+            <p class="wind" id="wind">-- km/h</p>
+            <p>Wind Speed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
