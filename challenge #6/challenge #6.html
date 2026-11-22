@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleek Dashboard App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-primary: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --badge-red: #ef4444;
+    --badge-green: #10b981;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #c084fc, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .logo i {
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #c084fc, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+  .notification {
+    background-color: var(--accent-primary);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .notification:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+  }
+
+  .notification .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    padding: 4px 9px;
+    border-radius: 50%;
+    background-color: var(--badge-red);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .notification .badge.pulse {
+    transform: scale(1.2);
+  }
+
+  .notification .badge.clear {
+    background-color: var(--badge-green);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .dashboard-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .dashboard-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+ 
+  .action-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-primary {
+    background: var(--accent-primary);
+    border-color: transparent;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--glass-border);
+    background: rgba(15, 23, 42, 0.3);
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-cube"></i>
+      <span>NexusUI</span>
+    </div>
+    
+   
+    <a href="#" class="notification" id="notificationBtn" onclick="handleNotificationClick(event)">
+      <span><i class="fa-regular fa-bell"></i> Inbox</span>
+      <span class="badge" id="badgeCount">3</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="dashboard-card">
+      <h2>Welcome Back, User</h2>
+      <p>Your workspace is synced. Click your Inbox button to manage notifications, or simulate a new live message below.</p>
+      
+      <div class="action-group">
+        <button class="btn btn-primary" onclick="addNotification()">
+          <i class="fa-solid fa-plus"></i> Simulate Message
+        </button>
+        <button class="btn" onclick="resetInbox()">
+          <i class="fa-solid fa-rotate-right"></i> Reset
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 NexusUI App. Designed with your custom elements.</p>
+  </footer>
+
+  <script>
+    let count = 3;
+
+    function updateBadge() {
+      const badge = document.getElementById('badgeCount');
+      badge.textContent = count;
+      
+     
+      badge.classList.add('pulse');
+      setTimeout(() => badge.classList.remove('pulse'), 200);
+
+  
+      if (count === 0) {
+        badge.classList.add('clear');
+      } else {
+        badge.classList.remove('clear');
+      }
+    }
+
+    function handleNotificationClick(event) {
+      event.preventDefault();
+      if (count > 0) {
+        count--;
+        updateBadge();
+      } else {
+        alert('All caught up! Your inbox is completely empty.');
+      }
+    }
+
+    function addNotification() {
+      count++;
+      updateBadge();
+    }
+
+    function resetInbox() {
+      count = 3;
+      updateBadge();
+    }
+  </script>
+
+</body>
+</html>
